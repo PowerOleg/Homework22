@@ -1,13 +1,19 @@
 import java.util.*;
 
 public class Main {
+    public static void print(Collection<Person> list) {
+        for (Iterator<Person> iterator = list.iterator(); iterator.hasNext(); ) {
+            Person p = iterator.next();
+            System.out.println(p);
+        }
+    }
     public static void main(String[] args) {
         Random random = new Random();
         List<String> names = Arrays.asList("Jack", "Connor", "Harry", "George", "Samuel", "John");
         List<String> families = Arrays.asList("Evans", "Young", "Harris", "Wilson", "Davies", "Adamson", "Brown");
 
         Collection<Person> people = new ArrayList<>();
-        for (int i = 0; i < 10_000_000; i++) {
+        for (int i = 0; i < 10; i++) {
             people.add(new Person(
                                   names.get(random.nextInt(names.size())),
                                   families.get(random.nextInt(families.size())),
@@ -17,6 +23,11 @@ public class Main {
                       )
             );
         }
+        long numbersOfTeenager = people.stream().filter(n -> n.getAge() < 18).count();
+
+
+
+        print(people);
 
 
 
